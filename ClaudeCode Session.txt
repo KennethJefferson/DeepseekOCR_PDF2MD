@@ -667,6 +667,8 @@ Connect to your pod using direct TCP connections to exposed ports.
   # Cell 2: Paste and run jupyter_setup_bundle.py content
 
   # Cell 3: Download model (8-10GB, ~15 minutes)
+  # !huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir /workspace/models/deepseek-ai/DeepSeek-OCR
+  !pip install hf-transfer
   !huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir /workspace/models/deepseek-ai/DeepSeek-OCR
 
   # Cell 4: Start server on port 8888 (using Jupyter's port)
