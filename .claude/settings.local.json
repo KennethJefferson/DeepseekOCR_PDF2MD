@@ -4,7 +4,8 @@
       "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.runpod.io)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [],
     "ask": []
