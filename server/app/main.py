@@ -62,6 +62,13 @@ async def startup_event():
     """Initialize services on startup"""
     global ocr_service, pdf_processor
 
+    # Display ASCII banner
+    print("\n" + "="*60)
+    print("    DEEPSEEK-OCR SERVER")
+    print("    PDF to Markdown Conversion")
+    print("    Port: {} | Backend: vLLM".format(os.getenv("PORT", "7777")))
+    print("="*60 + "\n")
+
     try:
         logger.info("Starting DeepSeek-OCR server...")
 
@@ -81,6 +88,7 @@ async def startup_event():
         pdf_processor = PDFProcessor()
 
         logger.info("Server startup complete!")
+        print("\n✓ Server ready at http://0.0.0.0:{}\n".format(os.getenv("PORT", "7777")))
 
     except Exception as e:
         logger.error(f"Failed to start server: {str(e)}")

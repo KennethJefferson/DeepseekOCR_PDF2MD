@@ -671,13 +671,41 @@ Connect to your pod using direct TCP connections to exposed ports.
   !pip install hf-transfer
   !huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir /workspace/models/deepseek-ai/DeepSeek-OCR
 
+  OR
+
+  !pip install -U huggingface_hub
+  !hf download deepseek-ai/DeepSeek-OCR --local-dir /workspace/models/deepseek-ai/DeepSeek-OCR
+
   # Cell 4: Start server on port 8888 (using Jupyter's port)
+
+  **Not working **
+
   import os
   os.environ['MODEL_PATH'] = '/workspace/models/deepseek-ai/DeepSeek-OCR'
   os.environ['PORT'] = '8888'
-  !cd /workspace/deepseek-ocr-server && nohup python -m uvicorn app.main:app --host 0.0.0.0 --port 8888 > server.log
-   2>&1 &
+  !cd /workspace/deepseek-ocr-server && nohup python -m uvicorn app.main:app --host 0.0.0.0 --port 8888 > server.log 2>&1 &
 
+   **Working Solution**
+
+  import os
+  import subprocess
+
+  os.environ['MODEL_PATH'] = '/workspace/models/deepseek-ai/DeepSeek-OCR'
+  os.environ['PORT'] = '7777'  # Changed from 8888 to 7777
+
+  # Run the server on port 7777
+  process = subprocess.Popen(
+      'cd /workspace/deepseek-ocr-server && nohup python -m uvicorn app.main:app --host 0.0.0.0 --port 7777 > server.log 2>&1',
+      shell=True,
+      stdout=subprocess.DEVNULL,
+      stderr=subprocess.DEVNULL
+  )
+
+print(f"Server started with PID: {process.pid}")
+
+  print(f"Server started with PID: {process.pid}")
+
+  
   # Cell 5: Test
   !sleep 30 && curl http://localhost:8888/health
 
