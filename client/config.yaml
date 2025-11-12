@@ -1,0 +1,63 @@
+# DeepSeek-OCR Client Configuration
+
+# API Configuration
+api:
+  # URL of the DeepSeek-OCR server
+  url: "http://localhost:8000"
+  # Alternative for Runpod deployment
+  # url: "http://your-runpod-endpoint.runpod.net:8000"
+
+  # Request timeout in seconds
+  timeout: 300
+
+# Processing Configuration
+processing:
+  # Number of worker goroutines (can be overridden with -workers flag)
+  workers: 4
+
+  # Retry configuration
+  retry_attempts: 3
+  retry_delay: 5  # seconds
+
+# Input Configuration
+input:
+  # Directory to scan for PDFs (can be overridden with -scan flag)
+  scan_directory: "./input"
+
+  # Recursive scanning
+  recursive: true
+
+  # File extensions to process
+  extensions:
+    - ".pdf"
+
+# Output Configuration
+output:
+  # Output directory for markdown files (can be overridden with -output flag)
+  directory: "./output"
+
+  # Preserve directory structure from input
+  preserve_structure: true
+
+  # Page separator template
+  page_separator: "<!-- Page %d -->"
+
+  # Overwrite existing files
+  overwrite_existing: false
+
+# Logging
+logging:
+  # Log level (debug, info, warn, error)
+  level: "info"
+
+  # Log file path (empty for stdout only)
+  file: ""
+
+# Performance
+performance:
+  # Maximum concurrent API requests per worker
+  max_concurrent_requests: 1
+
+  # Buffer sizes
+  job_buffer_size: 100
+  result_buffer_size: 100

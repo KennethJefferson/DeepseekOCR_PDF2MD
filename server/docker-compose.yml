@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  deepseek-ocr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: deepseek-ocr-server:latest
+    container_name: deepseek-ocr-server
+    runtime: nvidia
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/app/models/deepseek-ai/DeepSeek-OCR
+      - GPU_MEMORY_UTILIZATION=0.85
+      - CUDA_VISIBLE_DEVICES=0
+      - HOST=0.0.0.0
+      - PORT=8000
+      - WORKERS=1
+    volumes:
+      # Mount model directory (download models to this path on host)
+      - ./models:/app/models
+      # Mount temp directory for processing
+      - ./temp:/app/temp
+      # Mount logs
+      - ./logs:/app/logs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    networks:
+      - deepseek-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  deepseek-network:
+    driver: bridge

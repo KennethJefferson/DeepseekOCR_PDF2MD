@@ -1,0 +1,45 @@
+# DeepSeek-OCR Client Configuration for Runpod
+# Use this config when connecting to your Runpod pod
+
+# API Configuration
+api:
+  # Your Runpod endpoint (update with your actual pod URL)
+  # Format: http://[pod-name].runpod.io:[port]
+  url: "http://greasy-lime-clownfish.runpod.io:8888"
+
+  # Increase timeout for remote processing
+  timeout: 600  # 10 minutes
+
+# Processing Configuration
+processing:
+  # Use fewer workers for remote processing to avoid overwhelming the server
+  workers: 4
+
+  # Retry configuration for network issues
+  retry_attempts: 3
+  retry_delay: 5  # seconds
+
+# Input Configuration
+input:
+  # Directory to scan for PDFs
+  scan_directory: "./input"
+  recursive: true
+  extensions:
+    - ".pdf"
+
+# Output Configuration
+output:
+  # Output directory for markdown files
+  directory: "./output"
+  preserve_structure: true
+  page_separator: "<!-- Page %d -->"
+  overwrite_existing: false
+
+# Performance settings for remote processing
+performance:
+  # Limit concurrent requests per worker
+  max_concurrent_requests: 1
+
+  # Buffer sizes
+  job_buffer_size: 100
+  result_buffer_size: 100

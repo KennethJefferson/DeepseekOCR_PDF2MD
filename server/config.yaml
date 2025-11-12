@@ -1,0 +1,134 @@
+# DeepSeek-OCR Server Configuration
+
+# Server Settings
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: false
+  log_level: "info"
+
+# Model Configuration
+model:
+  # Path to the DeepSeek-OCR model
+  path: "/app/models/deepseek-ai/DeepSeek-OCR"
+  # Alternative local path for development
+  # path: "./models/deepseek-ai/DeepSeek-OCR"
+
+  # Backend selection (auto, vllm, transformers)
+  backend: "auto"
+
+  # GPU memory utilization (0.0 to 1.0)
+  gpu_memory_utilization: 0.85
+
+  # Maximum tokens to generate
+  max_tokens: 4096
+
+  # Temperature for sampling (0.0 for deterministic)
+  temperature: 0.0
+
+  # Model precision
+  dtype: "bfloat16"
+
+# PDF Processing
+pdf:
+  # Default DPI for image conversion
+  default_dpi: 300
+
+  # Available resolution presets
+  resolutions:
+    tiny: 150
+    small: 200
+    base: 300
+    large: 400
+    gundam: 600
+
+  # Maximum file size in MB
+  max_file_size_mb: 100
+
+  # Timeout for processing in seconds
+  timeout_seconds: 300
+
+  # Image format for conversion
+  image_format: "png"
+
+  # Use PyMuPDF if available
+  use_pymupdf: true
+
+# API Configuration
+api:
+  # CORS settings
+  cors:
+    allow_origins: ["*"]
+    allow_credentials: true
+    allow_methods: ["*"]
+    allow_headers: ["*"]
+
+  # Rate limiting
+  rate_limit:
+    enabled: false
+    requests_per_minute: 60
+
+  # Request size limits
+  max_upload_size_mb: 100
+
+# Storage
+storage:
+  # Temporary files directory
+  temp_dir: "/app/temp"
+
+  # Model cache directory
+  model_cache_dir: "/app/models"
+
+  # Clean up temp files older than (hours)
+  cleanup_age_hours: 24
+
+  # Run cleanup on startup
+  cleanup_on_startup: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  # Log file path (optional, stdout if not set)
+  file: "/app/logs/server.log"
+  # Max log file size in MB
+  max_size_mb: 100
+  # Number of backup files to keep
+  backup_count: 5
+
+# Performance
+performance:
+  # Number of threads for PDF conversion
+  pdf_conversion_threads: 4
+
+  # Batch size for processing multiple pages
+  batch_size: 1
+
+  # Enable response caching
+  enable_cache: false
+
+  # Cache TTL in seconds
+  cache_ttl: 3600
+
+# Monitoring
+monitoring:
+  # Enable metrics endpoint
+  metrics_enabled: true
+
+  # Metrics endpoint path
+  metrics_path: "/metrics"
+
+  # Health check interval in seconds
+  health_check_interval: 30
+
+# Runpod Specific Settings
+runpod:
+  # Pod ID (set automatically)
+  pod_id: "${RUNPOD_POD_ID}"
+
+  # API key (if using Runpod API)
+  api_key: "${RUNPOD_API_KEY}"
+
+  # Enable Runpod-specific optimizations
+  optimizations_enabled: true

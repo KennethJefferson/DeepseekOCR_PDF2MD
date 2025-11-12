@@ -1,0 +1,117 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+go.sum
+
+# Client binaries
+client/deepseek-client
+client/deepseek-client.exe
+client/pdf2md-client
+client/pdf2md-client.exe
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Model files (large)
+server/models/
+*.bin
+*.safetensors
+*.pth
+*.pt
+*.ckpt
+
+# Temporary files
+server/temp/
+server/logs/
+client/temp/
+client/output/
+*.tmp
+*.temp
+*.log
+
+# PDF test files
+*.pdf
+test_pdfs/
+input/
+output/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Runpod
+runpod.json
+.runpod/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Cache
+.cache/
+__pycache__/
+.ipynb_checkpoints/
+
+# Jupyter Notebooks
+*.ipynb
+
+# Configuration overrides
+config.local.yaml
+config.override.yaml
