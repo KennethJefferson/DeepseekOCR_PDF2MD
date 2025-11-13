@@ -37,24 +37,24 @@ A high-performance, GPU-powered PDF to Markdown conversion system using DeepSeek
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────┐         ┌─────────────────────┐
-│                     │         │                     │
-│   Go Client         │ ──HTTP──▶   FastAPI Server    │
-│   (Local Machine)   │         │   (Runpod GPU Pod)  │
-│                     │         │                     │
+┌─────────────────────┐         ┌────────────────────┐
+│                     │         │                    │
+│   Go Client         │ ──HTTP──▶   FastAPI Server	 │
+│   (Local Machine)   │         │   (Runpod GPU Pod) │
+│                     │         │                    │
 │  ┌──────────────┐   │         │  ┌──────────────┐  │
 │  │ Worker Pool  │   │         │  │ DeepSeek-OCR │  │
 │  │  (Parallel)  │   │         │  │    Model     │  │
 │  └──────────────┘   │         │  └──────────────┘  │
-│                     │         │                     │
+│                     │         │                    │
 │  ┌──────────────┐   │         │  ┌──────────────┐  │
 │  │ PDF Scanner  │   │         │  │ PDF Processor│  │
 │  └──────────────┘   │         │  └──────────────┘  │
-│                     │         │                     │
+│                     │         │                    │
 │  ┌──────────────┐   │         │  ┌──────────────┐  │
 │  │ MD Writer    │   │         │  │   vLLM/HF    │  │
 │  └──────────────┘   │         │  └──────────────┘  │
-└─────────────────────┘         └─────────────────────┘
+└─────────────────────┘         └────────────────────┘
 ```
 
 ## 📋 Requirements
